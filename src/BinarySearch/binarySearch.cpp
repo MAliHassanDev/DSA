@@ -30,5 +30,5 @@ int main() {
   std::vector<int> nums = {1, 2, 3, 4, 5};
   int target = 4;
   int result = sol.binary_search(nums, target);
-  assert("Result should be 4" && result == 3);
+  assert("Result should be 3" && result == 3);
 }
