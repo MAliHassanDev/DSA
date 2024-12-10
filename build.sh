@@ -16,9 +16,9 @@ clang++ -std=c++23 -ggdb -pedantic-errors -Wall -Weffc++ -Wextra  $SOURCE_FILE_P
 
 
 if [ $? -eq 0 ]; then 
-  echo "All tests passed successfully.";
+  echo "Program execution was successful!!";
 else 
-  echo "Some tests are failing!!. Check your program logic.";
+  echo "Unsuccessful program execution.";
   exit 1;
 fi
 
