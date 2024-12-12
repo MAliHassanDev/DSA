@@ -1,3 +1,5 @@
+#!/bin/sh
+
 SOURCE_FILE="$1.cpp"
 
 
@@ -21,7 +23,6 @@ else
   echo "Unsuccessful program execution.";
   exit 1;
 fi
-
 
 # Removed flags
 # -Werror
