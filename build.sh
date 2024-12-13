@@ -18,9 +18,9 @@ clang++ -std=c++23 -ggdb -pedantic-errors -Wall -Weffc++ -Wextra  $SOURCE_FILE_P
 
 
 if [ $? -eq 0 ]; then 
-  echo "Program execution was successful!!";
+  echo "Execution of '$SOURCE_FILE' was successful!!";
 else 
-  echo "Unsuccessful program execution.";
+  echo "Error while executing '$SOURCE_FILE'";
   exit 1;
 fi
 

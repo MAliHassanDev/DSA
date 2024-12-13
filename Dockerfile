@@ -10,4 +10,4 @@ WORKDIR /usr/app
 
 RUN chmod +x build.sh
 
-CMD [ "./build.sh","bubbleSort" ]
+CMD [ "./build.sh","selectionSort"]

@@ -5,7 +5,7 @@
 
 class Solution {
  public:
-  int binary_search(std::vector<int>& nums, int target) {
+  int binary_search(std::vector<int>& nums, int target) { // Time: O(LogN) Space: O(1)
     int left = 0;
     int right = nums.size() - 1;
     int result = -1;

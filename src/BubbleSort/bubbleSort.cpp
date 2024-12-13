@@ -1,12 +1,12 @@
+#include <cassert>
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 #include "../utils/utils.h"
 
 class Solution {
  public:
-  void bubble_sort(std::vector<int>& nums) {
+  void bubble_sort(std::vector<int>& nums) {  // Time: O(n²) Space: O(1)
     for (int i = nums.size() - 1; i > 0; --i) {
       for (int j = 0; j < i; ++j) {
         if (nums[j + 1] < nums[j]) {
@@ -21,8 +21,8 @@ class Solution {
 
 int main() {
   Solution sol;
-  std::vector<int> nums = {5, 2, 4, 1};
+  std::vector<int> nums = {5, 4, 3, 2, 1};
   sol.bubble_sort(nums);
-  std::vector<int> result{1, 2,4, 5};
+  std::vector<int> result{1, 2, 3, 4, 5};
   assert("Should sort given vector in non-decreasing order" && nums == result);
 }
