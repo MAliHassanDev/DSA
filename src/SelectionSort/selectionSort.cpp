@@ -2,6 +2,16 @@
 #include <iostream>
 #include <vector>
 
+/*
+  Time Complexity
+  - O(n²)
+  Space Complexity
+  - O(1)
+  Steps
+  - Worst:O(n²/2)
+  - Average:O(n²/2)
+  - Best:O(n²/2)
+*/
 class Solution {
  public:
   void selection_sort(std::vector<int>& vec) { // Time: O(n²) Space: O(1)
