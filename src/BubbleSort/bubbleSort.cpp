@@ -4,6 +4,17 @@
 
 #include "../utils/utils.h"
 
+
+/*
+  Time Complexity
+  - O(n²)
+  Space Complexity
+  - O(1)
+  Steps
+  - Best:O(n²/2)
+  - Average:O(n²/2)
+  - Worst:O(n²)
+*/
 class Solution {
  public:
   void bubble_sort(std::vector<int>& nums) {  // Time: O(n²) Space: O(1)
