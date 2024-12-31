@@ -1,15 +1,16 @@
 package com.practice.data_structures;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Queue{
-	private final ArrayList<Integer> queue;
+public class Queue<T>{
+	private final List<T> queue;
 
 	public Queue(){
 		queue = new ArrayList<>();
 	}
 
-	public void enQueue(int value){
+	public void enQueue(T value){
 		queue.add(value);
 	}
 
@@ -19,7 +20,7 @@ public class Queue{
 		}	
 	}
 
-	public int read(){
+	public T read(){
 		return queue.getFirst();
 	}
 }
