@@ -2,3 +2,5 @@ out
 target 
 .idea 
 
+**/Solution.java
+**/ListNode.java

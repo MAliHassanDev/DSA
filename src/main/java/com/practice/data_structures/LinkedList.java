@@ -13,42 +13,52 @@ public class LinkedList<T>{
 
 	// inserts new node at the end of list
 	public void insert(T value){
-		Node<T> node = this.createNode(value);
-		this.assignHeadIfNull(node);
-		this.tail.next = node;
-		this.tail = node;
-		this.size++;
+		Node<T> newNode = this.createNode(value,null,null);
+		if(this.head == null){
+			this.head = newNode;
+			this.tail = newNode;
+		}else{
+			newNode.prev = this.tail;
+			this.tail.next = newNode;
+			this.tail = newNode;
+		}
+		this.size++;			
 	}
 
 	public void insert(int index,T value){
-		this.validateIndex(index);
-		
-		Node<T> newNode = this.createNode(value);
-		// replace the head
+		this.validateIndex(index);	
+		Node<T> newNode = this.createNode(value,null,null);
 		if(index == 0){
-			newNode.next = this.head.next;
-			this.head.next = null;
+			newNode.next = this.head;
+			this.head.prev = newNode;
 			this.head = newNode;
+		}else{
+			Node<T> targetNode = this.getNode(index);
+			Node<T> prevNode = targetNode.prev;
+			prevNode.next = newNode;
+			newNode.prev = prevNode;
+			newNode.next = targetNode;
+			targetNode.prev = newNode; 
 		}
-		this.insertNextToNode(this.getPreviousNode(index),newNode);
+		this.size++;
 	}
 
 	public T get(int index){
 		this.validateIndex(index);
 		Node<T> targetNode = this.head;
-		int currentIndex = 1;
-		while(currentIndex <= index){
+		int currentIndex = 0;
+		while(currentIndex < index){
 			targetNode = targetNode.next;
 			currentIndex++;
 		}
 		return targetNode.value;
 	}
 
-	public T getFirst(){
+	public T getHead(){
 		return this.head.value;
 	}
 
-	public T getLast(){
+	public T getTail(){
 		return this.tail.value;
 	}
 
@@ -58,30 +68,40 @@ public class LinkedList<T>{
 
 	public boolean remove(T value){
 		if(this.head == null) return false;
-		
-		Node<T> previousNode = this.head;
-		boolean nodeFound = false;
-		if(previousNode.value == value){
-			nodeFound = true;
-		}else{
-			while(previousNode.next != null){
-				if(previousNode.next.value == value){
-					nodeFound = true;
-					break;
-				}
-				previousNode = previousNode.next;
+		// remove head;
+		if(this.head.value == value){
+			Node<T> newHead = this.head.next;
+			newHead.prev = null;
+			this.head = newHead;
+			return true;
+		}
+		Node<T> targetNode = this.head;
+
+		while(targetNode.next != null){
+			if(targetNode.value == value){
+				this.removeNode(targetNode);
+				return true;
 			}
+			targetNode = targetNode.next;
 		}
-		if(nodeFound){
-			this.removeNextNode(previousNode);
-		}
-		return nodeFound;
+		return false;
 	}
 
 	public void removeAt(int index){
 		this.validateIndex(index);
-		Node<T> prevNode = this.getPreviousNode(index);
-		this.removeNextNode(prevNode);
+		// remove head
+		if(index == 0){
+			Node<T> newHead = this.head.next;
+			newHead.prev = null;
+			this.head = newHead;
+			return;
+		}
+		this.removeNode(this.getNode(index));
+	}
+
+	public void reverse(){
+		if(this.head == null) return;
+		
 	}
 
 	public boolean contains(T value){
@@ -106,39 +126,36 @@ public class LinkedList<T>{
 		System.out.print("Tail\n");
 	}
 
-	private Node<T> createNode(T value){
-		return new Node<T>(value);
-	}
-
-	private void assignHeadIfNull(Node<T> node){
-		if(this.head == null){
-			this.head = node;
-			this.tail = node;
+	public void printReverse(){
+		Node<T> currentNode = this.tail;
+		System.out.print("Tail -> ");
+		while(currentNode != null){
+			System.out.print(currentNode.value + " -> ");
+			currentNode = currentNode.prev;
 		}
+		System.out.print("Head\n");
 	}
 
-	private void insertNextToNode(Node<T> currentNode,Node<T> newNode){
-		newNode.next = currentNode.next;
-		currentNode.next = newNode;
-		this.size++;
+	private Node<T> createNode(T value,Node<T> next,Node<T> prev){
+		return new Node<T>(value,next,prev);
 	}
 
-	private void removeNextNode(Node<T> currentNode){
-		Node<T> nextNode = currentNode.next;
-		currentNode.next = nextNode.next;
-		nextNode.next = null;
+	private void removeNode(Node<T> node){
+		Node<T> prevNode = node.prev;
+		prevNode.next = node.next;
+		node.next.prev = prevNode;
+		node = null;
 		this.size--;
 	}
 
-	// finds the node which is one index behind the node at given index
-	private Node<T> getPreviousNode(int index){
-		Node<T> prevNode = this.head;
-		int nextNodeIndex = 1;
-		while(nextNodeIndex < index){
-			prevNode = prevNode.next;
-			nextNodeIndex++;
+	private Node<T> getNode(int index){
+		Node<T> currNode = this.head;
+		int currNodeIndex = 0;
+		while(currNodeIndex < index){
+			currNode = currNode.next;
+			currNodeIndex++;
 		}
-		return prevNode;
+		return currNode;
 	}
 
 	private void validateIndex(int index){
@@ -169,5 +186,9 @@ class Node<T>{
 
 	public Node(T value){
 		this(value,null,null);
+	}
+
+	public Node(T value,Node<T> next){
+		this(value,next,null);
 	}
 }
