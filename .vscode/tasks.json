@@ -12,6 +12,19 @@
       "group": {
         "kind": "build",
         "isDefault": true
+      },
+      "options": {
+        "shell": {
+          "executable": "C:\\Windows\\System32\\cmd.exe",
+          "args": ["/d", "/c"]
+        }
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "focus": false,
+        "clear": true
       }
     }
   ]
