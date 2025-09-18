@@ -1,12 +1,8 @@
 
 #include <iostream>
 
-
-
-
-
-
-
-int main(){
-  std::cout << "hello World" << "\n";
+int main() { 
+  int input;
+  std::cin >> input;
+  std::cout << "Output: " << input << '\n';
 }

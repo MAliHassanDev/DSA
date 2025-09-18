@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compile and run",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "g++ -std=c++23 -o \"./build/${fileBasenameNoExtension}\" \"${file}\" && .\\build\\${fileBasenameNoExtension} < ./src/leetcode/input/input.txt > ./src/leetcode/output/output.txt"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
