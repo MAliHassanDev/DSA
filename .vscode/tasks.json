@@ -7,7 +7,7 @@
       "command": "cmd.exe",
       "args": [
         "/c",
-        "g++ -std=c++23 -o \"./build/${fileBasenameNoExtension}\" \"${file}\" && .\\build\\${fileBasenameNoExtension} < ./src/leetcode/input/input.txt > ./src/leetcode/output/output.txt"
+        "g++ -std=c++23 -ggdb -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion  -o ./build/${fileBasenameNoExtension} ${file} && .\\build\\${fileBasenameNoExtension} < ./src/leetcode/input/input.txt > ./src/leetcode/output/output.txt"
       ],
       "group": {
         "kind": "build",
