@@ -4,7 +4,6 @@
 
 #include "../utils/utils.h"
 
-
 /*
   Time Complexity
   - O(n²)
@@ -18,12 +17,17 @@
 class Solution {
  public:
   void bubble_sort(std::vector<int>& nums) {  // Time: O(n²) Space: O(1)
-    for (int i = nums.size() - 1; i > 0; --i) {
-      for (int j = 0; j < i; ++j) {
-        if (nums[j + 1] < nums[j]) {
-          int temp = nums[j];
-          nums[j] = nums[j + 1];
-          nums[j + 1] = temp;
+    size_t unsorted_until_index = nums.size() - 1;
+    bool sorted = false;
+    while (sorted == false) {
+      sorted = true;
+      for (size_t i = 0; i < unsorted_until_index; ++i) {
+        int current_num = nums[i];
+        int next_num = nums[i + 1];
+        if (current_num > next_num) {
+          nums[i] = next_num;
+          nums[i + 1] = current_num;
+          sorted = false;
         }
       }
     }
